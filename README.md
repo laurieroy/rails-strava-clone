@@ -1,24 +1,17 @@
-# README
+# Strava clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a clone of the workout app tracker Strava, primarily to track runs and shoe mileage. I am building this following a [code along](https://www.railscodealong.com) by Steve Polito(@stevepolitodsgn), 2000.
 
-Things you may want to cover:
+I had started this using rspec but was finding it difficult to shift from outside in to his approach. My current plan is to follow along here, then finish building out my RSpec-based version.
 
-* Ruby version
+Ruby 2.7.2 on Rails 6.1 with a postgres db, CI with GH actions. Testing is with mini-test, with which I am not very familar, so this will be a nice review.
 
-* System dependencies
+Auth: Devise
 
-* Configuration
+UI: bootstrap 4 
 
-* Database creation
+Dev dependencies: bullet, strong_migrations
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
