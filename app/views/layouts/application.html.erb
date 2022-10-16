@@ -12,11 +12,18 @@
   </head>
 
   <body>
-    <div class="container">
+    <main class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= link_to "Create an account", new_user_registration_path unless current_user %>
+
+      <%= link_to "Sign in", new_user_session_path unless current_user %>
+
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete unless current_user %>
 
       <%= yield %>
       
-    </div>
+    </main>
   
   </body>
 </html>
