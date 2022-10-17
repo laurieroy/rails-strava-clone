@@ -10,7 +10,7 @@ Auth: Devise
 
 UI: bootstrap 4 with devise-bootstrapped
 
-Dev dependencies: bullet, strong_migrations
+Dev dependencies: bullet, strong_migrations, mailcatcher
 
 
 
