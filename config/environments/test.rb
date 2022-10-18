@@ -49,6 +49,9 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+   # for devise
+   config.action_mailer.default_url_options = { host: 'localhost', port: 5000 }
+   
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
