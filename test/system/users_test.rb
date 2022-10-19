@@ -27,7 +27,7 @@ class UsersTest < ApplicationSystemTestCase
 
 		click_button "Sign in"
 
-		assert_selector "p", text: "Signed in successfully"
+		assert_selector "div.alert", text: "Signed in successfully"
 	end
 
 	# test "user can sign out" do
