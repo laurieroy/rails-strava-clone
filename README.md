@@ -6,7 +6,7 @@ I had started this using rspec but was finding it difficult to shift from outsid
 
 The tech stack is Ruby 2.7.2 on Rails 6.1 with a postgres db, CI with GH actions. Testing is with mini-test, with which I am not as familar, so this will be a nice review.
 
-
+   
 Application time zone is set to the current_user's time zone, default value is UTC.
 
 Auth: Devise
