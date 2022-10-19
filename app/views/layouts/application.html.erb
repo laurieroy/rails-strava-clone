@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>StravaClone</title>
+
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+ 
+    <% if content_for?(:title) %>  
+      <title><%= yield(:title) %> | StravaClone </title> 
+    <% else %>
+      <title>StravaClone</title>
+    <% end %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,13 +20,9 @@
 
   <body>
     <main class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= link_to "Sign up", new_user_registration_path unless current_user %>
+      <%= render partial: "shared/navbar" %>
 
-      <%= link_to "Sign in", new_user_session_path unless current_user %>
-
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete if current_user %>
+      <%= render partial: "shared/flash" %>
 
       <%= yield %>
       
