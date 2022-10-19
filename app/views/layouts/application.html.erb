@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>StravaClone</title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,8 +16,7 @@
     <main class="container">
       <%= render partial: "shared/navbar" %>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render partial: "shared/flash" %>
 
       <%= yield %>
       
