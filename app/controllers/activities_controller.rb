@@ -22,10 +22,22 @@ class ActivitiesController < ApplicationController
 		end
 	end
 
+	def edit
+	end
+
+	def update
+		if @activity.update(activity_params)
+			redirect_to @activity, notice: "Updated activity"
+		else
+			render :edit, notice: "Problem updating activity, please try again"
+		end
+	end
+
+
 	private 
 
 	def activity_params
-		params.require(:activity).permit(:duration, :distance, :category, :difficulty, :unit, :date)
+		params.require(:activity).permit(:duration, :distance, :category, :difficulty, :unit, :date, :description)
 	end
 
 	def calculate_duration

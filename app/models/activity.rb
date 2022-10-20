@@ -1,5 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :user
+  has_rich_text :description
   
   enum category: %i[run paddle hike workout race ride swim other]
   enum difficulty: %i[easy moderate hard]
