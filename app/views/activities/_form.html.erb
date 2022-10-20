@@ -1,0 +1,55 @@
+<%= form_with model: @activity, local: true do |f| %>
+
+<%= render partial: "shared/form_errors", locals: {f: f}  %>
+
+	<div class="form-group">
+		<%= f.label :date %>
+		<%= f.datetime_field :date, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :category %>
+		<%= f.collection_select :category, Activity.categories.keys.map{ |acty| [acty, acty.humanize] }, :first, :second, {}, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :difficulty %>
+		<%= f.collection_select :difficulty, Activity.difficulties.keys.map{ |acty| [acty, acty.humanize] }, :first, :second, {}, class: "custom-select" %>
+	</div>
+
+		<div class="form-group">
+		<%= f.label :distance %>
+		<%= f.number_field :distance, step: 0.01, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :unit %>
+		<%= f.collection_select :unit, Activity.units.keys.map{ |acty| [acty, acty.humanize] }, :first, :second, {prompt: true }, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :hours %>
+		<%= f.number_field :hours, min: 0, max: 99, step: 1, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :minutes %>
+		<%= f.number_field :minutes, min: 0, max: 59, step: 1, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :seconds %>
+		<%= f.number_field :seconds, min: 0, max: 59, step: 1, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :description %>
+		<%= f.rich_text_area :description, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.submit class: "btn btn-primary" %>
+		<%= link_to "Delete", activity_path(@activity), method: :delete, data: {confirm: "Really delete this activity?" }, class: "btn btn-danger" if @activity.persisted? %>
+	</div>
+
+<% end %>

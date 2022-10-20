@@ -1,6 +1,6 @@
 # Strava clone
 
-This project is a clone of the workout tracker app, Strava, showing primarily the ability to track runs and shoe mileage. I am building this following a [code along](https://www.railscodealong.com) by Steve Polito(@stevepolitodsgn), 2000. It is built for the US, so saving units in imperial/US units.
+This project is a clone of the workout tracker app, Strava, showing primarily the ability to track runs and shoe mileage. I am building this following a [code along](https://www.railscodealong.com) by Steve Polito(@stevepolitodsgn), 2000. It is built for the US, so saving units in imperial/US units, so default pace is per mile.
 
 I had started this using rspec but was finding it difficult to shift from outside in to his approach. My current plan is to follow along here, then finish building out my RSpec-based [version](../../../rails-stridecatcher).
 
