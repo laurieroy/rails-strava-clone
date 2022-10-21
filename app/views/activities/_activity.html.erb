@@ -1,0 +1,12 @@
+<tr>
+	<th scope="col"><%= format_date_time(activity.date) %></th>
+	<th scope="col"><%= activity.category %></th>
+	<th scope="col"><%= format_time(activity.duration) if activity.duration.present? %></th>
+	<th scope="col"><%= activity.distance %> <%= activity.unit  if activity.distance.present?%></th>
+	<th scope="col"><%= activity.difficulty %></th>
+	<th scope="col"><%= format_time(activity.calculated_pace) if activity.calculated_pace.present? %></th>
+	<th scope="col"><%#= activity.actions %>
+	 <%= link_to "Edit", edit_activity_path(activity) if activity.present? %></th>
+</tr>
+
+
