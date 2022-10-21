@@ -1,7 +1,6 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-	include Devise::Test::IntegrationHelpers
 
 	def setup
 		@user = users(:confirmed_user)

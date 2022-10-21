@@ -1,7 +1,6 @@
 require "test_helper"
 
 class TimeZoneTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
 
   def setup
     @user = users(:confirmed_user_with_time_zone)
