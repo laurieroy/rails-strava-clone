@@ -15,6 +15,7 @@ UI: bootstrap 4 with devise-bootstrapped
 
 Dev dependencies: bullet, strong_migrations, mailcatcher
 
+<!-- To run: foreman start -->
 
 
 
