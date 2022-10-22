@@ -8,3 +8,13 @@
     calculated_pace:  <%= rand(360..600) %>
     date: <%= i.days.ago %>
 <% end %>
+
+<% 1.upto(60) do |i| %>
+  another_confirmed_user_activity_<%= i %>:
+    distance: <%= rand(1..26) %>
+    duration: <%= rand(1800..7200) %>
+    unit: miles
+    user: another_confirmed_user_with_activities
+    calculated_pace:  <%= rand(360..600) %>
+    date: <%= i.days.ago %>
+<% end %>
