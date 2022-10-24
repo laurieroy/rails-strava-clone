@@ -1,4 +1,6 @@
 module ApplicationHelper
+	include Pagy::Frontend
+	
 	def format_time(seconds)
 		Time.at(seconds).utc.strftime("%H:%M:%S")
 	end

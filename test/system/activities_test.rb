@@ -59,4 +59,13 @@ class ActivitiesTest < ApplicationSystemTestCase
 				
 		assert_text "error"
 	end
+
+	test "paginates activities" do
+		sign_in @user
+
+		visit activities_path
+
+		click_link "Next"
+		click_link "Prev"
+	end
 end
