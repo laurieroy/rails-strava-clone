@@ -30,7 +30,7 @@ class ActivitiesController < ApplicationController
 	def update
 		authorize @activity
 		if @activity.update(activity_params)
-			redirect_to @activity, notice: "Updated activity"
+			redirect_to @activity, notice: "Activity was updated"
 		else
 			render :edit, notice: "Problem updating activity, please try again"
 		end
