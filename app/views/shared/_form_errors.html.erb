@@ -1,8 +1,10 @@
 <% if f.object.errors.any? %>
-	<h3>The following <%= pluralize(f.object.errors.count, "error") %> prevented this <%= f.object.class.name.downcase %> from being saved: </h3>
+<div id="form-errors" class="alert alert-danger">
+	<h5>The following <%= pluralize(f.object.errors.count, "error") %> prevented this <%= f.object.class.name.downcase %> from being saved: </h5>
 	<ul>
 		<% f.object.errors.full_messages.each do |m| %>
 			<li><%= m %></li>
 		<% end %>
 	</ul>
+</div>
 <% end %>

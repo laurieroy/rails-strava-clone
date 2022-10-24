@@ -51,4 +51,11 @@ class UsersTest < ApplicationSystemTestCase
 	end
 
 
+	test "renders form errors" do
+		visit new_user_registration_path
+
+		click_button "Sign up"
+		
+		assert_text "error"
+	end
 end
