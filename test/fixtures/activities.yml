@@ -1,5 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-<% 1.upto(180) do |i| %>
+
+# not getting this to work how i expect, skipping for now
+<% 1.upto(60) do |i| %>
   confirmed_user_activity_<%= i %>:
     distance: <%= rand(1..26) %>
     hours: <%= rand(0..2) %>
@@ -8,6 +10,17 @@
     unit: miles
     user: confirmed_user_with_activities
     date: <%= i.days.ago %>
+    difficulty: hard
+<% end %>
+
+<% 1.upto(20) do |i| %>
+  confirmed_user_activity_<%= i %>:
+    difficulty: easy
+<% end %>
+
+<% 21.upto(40) do |i| %>
+  confirmed_user_activity_<%= i %>:
+    difficulty: moderate
 <% end %>
 
 <% 1.upto(180) do |i| %>
@@ -20,3 +33,48 @@
     user: another_confirmed_user_with_activities
     date: <%= i.days.ago %>
 <% end %>
+
+
+# confirmed_user_with_searchable_activity_1:
+#   # distance: <%= rand(1..26) %>
+#   # unit: miles
+#   hours: <%= rand(0..2) %>
+#   minutes: <%= rand(0..59) %>
+#   seconds: <%= rand(0..59) %>
+#   user: confirmed_user_with_searchable_activities
+#   date: <%= Time.zone.now  %>
+#   difficulty: easy
+#   category: run
+
+# confirmed_user_with_searchable_activity_2:
+#   distance: <%= rand(1..26) %>
+#   unit: miles
+#   hours: <%= rand(0..2) %>
+#   minutes: <%= rand(0..59) %>
+#   seconds: <%= rand(0..59) %>
+#   user: confirmed_user_with_searchable_activities
+#   date: <%= 1.month.from_now %>
+#   difficulty: moderate
+#   category: workout
+
+# confirmed_user_with_searchable_activity_3:
+#   distance: <%= rand(1..26) %>
+#   unit: miles
+#   hours: <%= rand(0..2) %>
+#   minutes: <%= rand(0..59) %>
+#   seconds: <%= rand(0..59) %>
+#   user: confirmed_user_with_searchable_activities
+#   date: <%= 1.month.ago %>
+#   difficulty: hard
+#   category: ride
+
+# confirmed_user_with_searchable_activity_4:
+#   distance: <%= rand(1..26) %>
+#   unit: miles
+#   hours: <%= rand(0..2) %>
+#   minutes: <%= rand(0..59) %>
+#   seconds: <%= rand(0..59) %>
+#   user: confirmed_user_with_searchable_activities
+#   date: <%= 1.year.ago %>
+#   difficulty: hard
+#   category: race

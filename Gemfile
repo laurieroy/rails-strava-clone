@@ -59,4 +59,6 @@ end
 gem 'devise', '~> 4.8'
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 gem 'pundit', '~> 2.2'
+
 gem "pagy", "~> 5.10"
+gem "ransack", "~> 3.2"

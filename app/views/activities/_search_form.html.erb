@@ -1,0 +1,27 @@
+<%= search_form_for @q do |f| %>
+
+	<div class="form-group">
+		<%= f.label :difficulty_eq %>
+		<%= f.collection_select :difficulty_eq, Activity.difficulties.keys.each_with_index.map{ |acty, index| [index, acty.humanize] }, :first, :second, {prompt: true}, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :date_gteq %>
+		<%= f.date_field :date_gteq, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :date_lteq %>
+		<%= f.date_field :date_lteq, class: "custom-select" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :category_eq %>
+		<%= f.collection_select :category_eq, Activity.categories.keys.each_with_index.map{ |category, index| [index, category.humanize] }, :first, :second, {prompt: true}, class: "custom-select" %>
+	</div>
+
+	<div class="form-group mb-4">
+		<%= f.submit class: "btn btn-primary float-right" %>
+		<%= link_to "Reset", activities_path %>
+	</div>
+<% end %>
