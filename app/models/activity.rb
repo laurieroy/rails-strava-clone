@@ -6,16 +6,31 @@ class Activity < ApplicationRecord
   enum difficulty: %i[easy moderate hard]
   enum unit: %i[miles kilometers meters]
 
+  before_validation :calculate_duration
   before_save :calculate_pace
 
   validates :date, presence: true
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
   validates :distance, numericality: { greater_than_or_equal_to: 0, allow_nil: true }
+  validates :hours, numericality: { only_integer: true, greater_than_or_equal_to: 0,less_than_or_equal_to: 59, allow_nil: true }
+  validates :minutes, numericality: { only_integer: true, greater_than_or_equal_to: 0,less_than_or_equal_to: 59, allow_nil: true }
+  validates :seconds, numericality: { only_integer: true, greater_than_or_equal_to: 0,less_than_or_equal_to: 59, allow_nil: true }
+
 
   validate :require_distance_or_duration
   validate :require_unit_if_set_distance
 
   private 
+
+  def calculate_duration
+		calculated_duration = 0
+		
+		calculated_duration += self.hours * 3600 if self.hours.present?
+		calculated_duration += self.minutes * 60 if self.minutes.present?
+		calculated_duration += self.seconds if self.seconds.present?
+
+		self.duration = calculated_duration unless calculated_duration == 0
+	end
 
   def calculate_pace
 		# distances are converted to miles before calculating pace
