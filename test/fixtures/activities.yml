@@ -1,20 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-<% 1.upto(60) do |i| %>
+<% 1.upto(180) do |i| %>
   confirmed_user_activity_<%= i %>:
     distance: <%= rand(1..26) %>
-    duration: <%= rand(1800..7200) %>
+    hours: <%= rand(0..2) %>
+    minutes: <%= rand(0..59) %>
+    seconds: <%= rand(0..59) %>
     unit: miles
     user: confirmed_user_with_activities
-    calculated_pace:  <%= rand(360..600) %>
     date: <%= i.days.ago %>
 <% end %>
 
-<% 1.upto(60) do |i| %>
+<% 1.upto(180) do |i| %>
   another_confirmed_user_activity_<%= i %>:
     distance: <%= rand(1..26) %>
-    duration: <%= rand(1800..7200) %>
+    hours: <%= rand(0..2) %>
+    minutes: <%= rand(0..59) %>
+    seconds: <%= rand(0..59) %>
     unit: miles
     user: another_confirmed_user_with_activities
-    calculated_pace:  <%= rand(360..600) %>
     date: <%= i.days.ago %>
 <% end %>
