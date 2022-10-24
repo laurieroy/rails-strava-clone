@@ -49,4 +49,14 @@ class ActivitiesTest < ApplicationSystemTestCase
 
 		assert_text "Activity deleted"
 	end
+
+	test "renders form errors" do
+		sign_in @user
+
+		visit new_activity_path
+
+		click_button "Create Activity"
+				
+		assert_text "error"
+	end
 end
