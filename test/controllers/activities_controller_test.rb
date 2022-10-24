@@ -18,18 +18,18 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
     end 
   end
   
-  # test "cannot update another user's activity" do
-  #   sign_in @user_one
-  #   new_duration = 1
+  test "cannot update another user's activity" do
+    sign_in @user_one
+    new_duration = 1
 
-  #   put activity_path(@user_two_activity), params: { activity: {duration: new_duration}}
-  #   assert_not_equal @user_two_activity.reload.duration, new_duration
-  # end
+    put activity_path(@user_two_activity), params: { activity: {duration: new_duration}}
+    assert_not_equal @user_two_activity.reload.duration, new_duration
+  end
 
-  # test "does not get show for another user's activity" do
-  #   sign_in @user_one
+  test "does not get show for another user's activity" do
+    sign_in @user_one
     
-  #   get activity_path(@user_two_activity)
-  #   assert_redirected_to root_path
-  # end
+    get activity_path(@user_two_activity)
+    assert_redirected_to root_path
+  end
 end
