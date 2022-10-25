@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: "users/registrations"
   }
+
   resources :activities
-  root 'static_pages#home'
+
+  unauthenticated do
+    root "static_pages#home"
+  end
+
+  authenticated :user do
+    root "activities#index", as: :authenticated_root
+  end
 end
