@@ -1,6 +1,6 @@
 <tr>
 	<th scope="col"><%= format_date_time(activity.date) %></th>
-	<th scope="col"><%= activity.category %></th>
+	<th scope="col"><%= activity.category.humanize %></th>
 	<th scope="col"><%= format_time(activity.duration) if activity.duration.present? %></th>
 	<th scope="col"><%= activity.distance %> <%= activity.unit  if activity.distance.present?%></th>
 	<th scope="col"><%= activity.difficulty %></th>

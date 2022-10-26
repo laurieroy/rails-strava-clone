@@ -55,5 +55,6 @@
 		<%= link_to "Delete", activity_path(@activity), method: :delete, data: {confirm: "Really delete this activity?" }, class: "btn btn-danger" if @activity.persisted? %>
 		<%= f.submit class: "btn btn-primary float-right" %>
 	</div>
+	<%= link_to "Back", :back %>
 </div>
 <% end %>
