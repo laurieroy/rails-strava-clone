@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -25,8 +23,8 @@
       <%= render partial: "shared/flash" %>
 
       <%= yield %>
+      <%= debug(params) unless Rails.env.production? %>
       
     </main>
-  
   </body>
 </html>
