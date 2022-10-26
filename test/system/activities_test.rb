@@ -19,7 +19,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
 		click_button "Create Activity"
 
-		assert_selector "p", text: "00:07:00"
+		assert_text "00:07:00"
 	end
 
 	test "updates activity" do

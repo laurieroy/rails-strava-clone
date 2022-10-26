@@ -18,7 +18,6 @@ class Activity < ApplicationRecord
   validates :minutes, numericality: { only_integer: true, greater_than_or_equal_to: 0,less_than_or_equal_to: 59, allow_nil: true }
   validates :seconds, numericality: { only_integer: true, greater_than_or_equal_to: 0,less_than_or_equal_to: 59, allow_nil: true }
 
-
   validate :require_distance_or_duration
   validate :require_unit_if_set_distance
 
@@ -61,6 +60,5 @@ class Activity < ApplicationRecord
 
   def require_unit_if_set_distance
     errors.add(:base, "Please select a unit for distance") if self.distance.present? && self.unit.nil? 
-  end
-  
+  end 
 end
