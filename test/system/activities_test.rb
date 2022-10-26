@@ -65,7 +65,58 @@ class ActivitiesTest < ApplicationSystemTestCase
 
 		visit activities_path
 
-		click_link "Next"
-		click_link "Prev"
+		assert_link "Next"
+		assert_link "Prev"
 	end
+
+	test "searches activities based on difficulty" do
+		@user = users(:confirmed_user_with_searchable_activities)
+		sign_in @user
+
+		visit activities_path
+
+		select "Hard"
+
+		click_button "Search"
+
+		within ".table" do
+			assert_text "hard", count: 2
+			assert_text "moderate", count: 0
+			assert_text "easy", count: 0
+		end
+	end
+
+	test "searches reset correctly resets filters" do
+		skip
+		# click_link "Reset"
+# 	assert_text "Please select", count: 2
+		# find_field "Start date".placeholder("mm/dd/yyyy")  # figure out how to do this
+		# assert_empty "End date"
+	end
+
+	# Note: I
+	test "searches activities based on description" do
+		@user = users(:confirmed_user_with_searchable_activities)
+		sign_in @user
+
+		visit activities_path
+
+		fill_in "Description includes",	with: "should not yield results"
+		click_button "Search"
+
+		assert_text "No results"
+
+		click_link "Reset"
+	
+		# with valid terms
+		fill_in "Description includes",	with: "million"
+		click_button "Search"
+
+		within "table" do
+			assert_text "hard", count: 1
+			assert_text "moderate", count: 0
+			assert_text "easy", count: 0
+		end
+	end
+
 end
