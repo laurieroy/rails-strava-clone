@@ -5,32 +5,33 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" >
-    <%# <ul class="navbar-nav mr-auto"> %>
-
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContentActivites" >
+    <% if current_user %>
+    <ul class="navbar-nav mr-auto"> 
       <%# <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li> %>
+      </li>  %>
       <%# <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
-      </li> %>
-      <%# <li class="nav-item dropdown">
+      </li>  %>
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Dropdown
+          My Activities
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <%= link_to "View my activities", activities_path, class: "dropdown-item" %>
+          <%= link_to "Add an activity", new_activity_path, class: "dropdown-item" %>
+          <%#= link_to "Edit an activity", edit_activity_path(@activity), class: "dropdown-item" %>
         </div>
-      </li> %>
-    <%# </ul> %>
+      </li> 
+    </ul>
+    <% end %>
     <ul class="navbar-nav">
       <% if current_user %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-            My account
+            <%# My account %>
+            <%= current_user.email %>
           </a>
  
           <div class="dropdown-menu">
@@ -39,6 +40,7 @@
               <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
       <% else %>
+        <span><em>sample user:</em> user_one@example.com password </span>
         <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item"  %>
         <%= link_to "Sign in", new_user_session_path, class: "dropdown-item" %>
       <% end %>

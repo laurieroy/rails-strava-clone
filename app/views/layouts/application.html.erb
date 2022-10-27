@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,14 +17,15 @@
   </head>
 
   <body>
-    <main class="container">
-      <%= render partial: "shared/navbar" %>
+    <%= render partial: "shared/navbar" %>
 
+    <main class="container">
+      
       <%= render partial: "shared/flash" %>
 
       <%= yield %>
+      <%= debug(params) unless Rails.env.production? %>
       
     </main>
-  
   </body>
 </html>

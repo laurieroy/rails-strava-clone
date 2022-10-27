@@ -1,15 +1,96 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-confirmed_user_activity_one:
-  duration: 1
+#  dynamic values in fixtures are to be considered a code smell.
+#  perhaps this is why i'm not getting this to work how i expect, skipping for now
+# <% 1.upto(60) do |i| %>
+# <% end %>
+confirmed_user_activity_1:
+  distance: <%= rand(1..26) %>
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  unit: miles
   user: confirmed_user_with_activities
-  date: <%= Time.zone.now %>
+  date: <%= 1.days.ago %>
+  difficulty: hard
 
-# two:
-#   duration: 1
-#   category: 1
-#   distance: 9.99
-#   difficulty: 1
-#   unit: 1
-#   user: two
-#   date: 2022-10-19 10:39:28
+confirmed_user_activity_2:
+  distance: <%= rand(1..26) %>
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  unit: miles
+  user: confirmed_user_with_activities
+  date: <%= 2.days.ago %>
+  difficulty: hard
+
+confirmed_user_activity_3:
+  distance: <%= rand(1..26) %>
+  unit: miles
+  user: confirmed_user_with_activities
+  calculated_pace:  <%= rand(360..600) %>
+  date: <%= 3.days.ago %>
+  difficulty: easy
+
+
+confirmed_user_activity_4:
+  distance: <%= rand(1..26) %>
+  unit: miles
+  user: confirmed_user_with_activities
+  calculated_pace:  <%= rand(360..600) %>
+  date: <%= 4.days.ago %>
+  difficulty: moderate
+
+another_confirmed_user_activity_1:
+  distance: <%= rand(1..26) %>
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  unit: miles
+  user: another_confirmed_user_with_activities
+  date: <%= 10.days.ago %>
+
+
+confirmed_user_with_searchable_activity_1:
+  date: <%= Time.zone.now %>
+  distance: <%= rand(1..26) %>
+  unit: miles
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  user: confirmed_user_with_searchable_activities
+  difficulty: easy
+  category: run
+
+confirmed_user_with_searchable_activity_2:
+  distance: <%= rand(1..26) %>
+  unit: miles
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  user: confirmed_user_with_searchable_activities
+  date: <%= 1.month.from_now %>
+  difficulty: moderate
+  category: workout
+
+confirmed_user_with_searchable_activity_3:
+  distance: <%= rand(1..26) %>
+  unit: miles
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  user: confirmed_user_with_searchable_activities
+  date: <%= 1.month.ago %>
+  difficulty: hard
+  category: ride
+
+confirmed_user_with_searchable_activity_4:
+  distance: <%= rand(1..26) %>
+  unit: miles
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(0..59) %>
+  seconds: <%= rand(0..59) %>
+  user: confirmed_user_with_searchable_activities
+  date: <%= 1.year.ago %>
+  difficulty: hard
+  category: race
+

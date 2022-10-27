@@ -1,7 +1,6 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-	include Devise::Test::IntegrationHelpers
 
 	def setup
 		@user = users(:confirmed_user)
@@ -52,4 +51,11 @@ class UsersTest < ApplicationSystemTestCase
 	end
 
 
+	test "renders form errors" do
+		visit new_user_registration_path
+
+		click_button "Sign up"
+		
+		assert_text "error"
+	end
 end
