@@ -34,6 +34,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
+      - name: Compile assets
+        run: |
+          yarn build
+          yarn build:css
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
         with:
