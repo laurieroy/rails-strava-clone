@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
+/*! purgecss start ignore */
 @import './actiontext.scss';
-
+/*! purgecss end ignore */
 
 // hide button to uplaod files
 trix-toolbar .trix-button-group--file-tools {
