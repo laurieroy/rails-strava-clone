@@ -13,9 +13,9 @@ on:
 jobs:
   verify:
   - name: Compile assets
-        run: |
-          yarn build
-          yarn build:css
+    run: |
+      yarn build
+      yarn build:css
   test:
     runs-on: ubuntu-latest
     services:
