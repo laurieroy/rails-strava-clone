@@ -13,6 +13,8 @@ Turbolinks.start();
 ActiveStorage.start();
 
 import 'bootstrap';
+import 'trix'
+import '@rails/actiontext'
 import '../stylesheets/application';
 
 document.addEventListener('turbolinks:load', function () {
@@ -22,8 +24,6 @@ document.addEventListener('turbolinks:load', function () {
   });
 });
 
-require("trix")
-require("@rails/actiontext")
 
 
 document.addEventListener("trix-file-accept", (e)=>{
