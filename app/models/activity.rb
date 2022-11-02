@@ -11,6 +11,7 @@ class Activity < ApplicationRecord
   before_validation :calculate_duration
   before_save :calculate_pace
   after_save :create_total
+  after_destroy :subtract_from_total
 
   validates :date, presence: true
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
@@ -93,4 +94,34 @@ class Activity < ApplicationRecord
   def require_unit_if_set_distance
     errors.add(:base, "Please select a unit for distance") if self.distance.present? && self.unit.nil? 
   end 
+
+  def subtract_from_total
+    week = self.date.to_date.cweek
+    year = self.date.to_date.cwyear
+    start_date = Date.commercial(year, week)
+  
+    original_duration = self.duration
+    kmConversionFactor = 0.621371
+		mConversionFactor = 0.000621371
+
+    case self.unit
+    when "miles"
+      distance_in_miles = self.distance
+
+    when "kilometers"
+      distance_in_miles = self.distance * kmConversionFactor
+
+
+    when "meters"
+      distance_in_miles = self.distance * mConversionFactor
+    end
+
+    @total = Total.find_by(user: self.user, start_date: start_date, range: 'week')
+
+    unless @total.nil?
+      @total.distance -=  distance_in_miles
+      @total.duration -=  original_duration
+      @total.save
+    end
+  end
 end
