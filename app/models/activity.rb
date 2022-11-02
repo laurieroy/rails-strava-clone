@@ -10,6 +10,7 @@ class Activity < ApplicationRecord
 
   before_validation :calculate_duration
   before_save :calculate_pace
+  after_save :create_total
 
   validates :date, presence: true
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
@@ -53,6 +54,37 @@ class Activity < ApplicationRecord
 			end
 		end
 	end
+
+  def create_total
+    week = self.date.to_date.cweek
+    year = self.date.to_date.cwyear
+    start_date = Date.commercial(year, week)
+
+    original_duration = self.duration
+    kmConversionFactor = 0.621371
+		mConversionFactor = 0.000621371
+
+    case self.unit
+    when "miles"
+      distance_in_miles = self.distance
+
+    when "kilometers"
+      distance_in_miles = self.distance * kmConversionFactor
+
+
+    when "meters"
+      distance_in_miles = self.distance * mConversionFactor
+    end
+
+    @total = Total.find_or_initialize_by(user: self.user, start_date: start_date, range: 'week')
+
+    total_distance = distance_in_miles + @total.distance unless distance_in_miles.nil?
+    total_duration = original_duration + @total.duration unless original_duration.nil?
+
+    @total.distance = total_distance unless total_distance.nil?
+    @total.duration = total_duration unless total_duration.nil?
+    @total.save
+  end
 
   def require_distance_or_duration
     errors.add(:base, "Please add either a distance or a duration") if self.distance.nil? && self.duration.nil?
