@@ -9,6 +9,8 @@ The tech stack is Ruby 2.7.2 on Rails 6.1 with a postgres db, CI with GH actions
    
 Application time zone is set to the current_user's time zone, default value is UTC.
 
+For the weekly totals, the default start date is the Monday of the current week.
+
 Auth: Devise
 
 UI: bootstrap 4 with devise-bootstrapped
