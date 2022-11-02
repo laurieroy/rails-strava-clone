@@ -9,8 +9,9 @@ class Activity < ApplicationRecord
   enum unit: %i[miles kilometers meters]
 
   before_validation :calculate_duration
+  before_save :calculate_distance_in_miles
   before_save :calculate_pace
-  after_save :create_total
+  after_save :create_or_update_total
   after_destroy :subtract_from_total
 
   validates :date, presence: true
@@ -25,6 +26,24 @@ class Activity < ApplicationRecord
 
   private 
 
+  def calculate_distance_in_miles
+    kmConversionFactor = 0.621371
+		mConversionFactor = 0.000621371
+
+		if self.unit.present? && self.distance.present?
+      case self.unit
+      when "miles"
+        self.distance_in_miles = self.distance
+
+      when "kilometers"
+        self.distance_in_miles = self.distance * kmConversionFactor
+
+      when "meters"
+      self.distance_in_miles = self.distance * mConversionFactor
+      end
+    end
+  end
+
   def calculate_duration
 		calculated_duration = 0
 		
@@ -37,50 +56,23 @@ class Activity < ApplicationRecord
 
   def calculate_pace
 		# distances are converted to miles before calculating pace
-		kmConversionFactor = 0.621371
-		mConversionFactor = 0.000621371
 
-		if self.unit.present? && self.distance.present? && self.duration.present?
-			case self.unit
-			when "miles"
-				self.calculated_pace = self.duration / self.distance
-
-			when "kilometers"
-				distance_in_miles = self.distance * kmConversionFactor
-				self.calculated_pace = self.duration / (self.distance * kmConversionFactor)
-
-			when "meters"
-				distance_in_miles = self.distance * mConversionFactor
-				self.calculated_pace = self.duration / (self.distance * mConversionFactor)
-			end
-		end
+		self.calculated_pace = self.duration / self.distance_in_miles if  self.distance_in_miles.present? && self.duration.present?
 	end
 
-  def create_total
+  def create_or_update_total
     week = self.date.to_date.cweek
     year = self.date.to_date.cwyear
     start_date = Date.commercial(year, week)
 
     original_duration = self.duration
-    kmConversionFactor = 0.621371
-		mConversionFactor = 0.000621371
-
-    case self.unit
-    when "miles"
-      distance_in_miles = self.distance
-
-    when "kilometers"
-      distance_in_miles = self.distance * kmConversionFactor
-
-
-    when "meters"
-      distance_in_miles = self.distance * mConversionFactor
-    end
 
     @total = Total.find_or_initialize_by(user: self.user, start_date: start_date, range: 'week')
-
-    total_distance = distance_in_miles + @total.distance unless distance_in_miles.nil?
-    total_duration = original_duration + @total.duration unless original_duration.nil?
+    @activities = Activity.where("date >= ?", start_date)
+      .where("date <= ?", start_date.end_of_week)
+      .where(user: self.user)
+    total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
+    total_duration = @activities.sum(:duration) unless @activities.empty?
 
     @total.distance = total_distance unless total_distance.nil?
     @total.duration = total_duration unless total_duration.nil?
@@ -101,20 +93,7 @@ class Activity < ApplicationRecord
     start_date = Date.commercial(year, week)
   
     original_duration = self.duration
-    kmConversionFactor = 0.621371
-		mConversionFactor = 0.000621371
 
-    case self.unit
-    when "miles"
-      distance_in_miles = self.distance
-
-    when "kilometers"
-      distance_in_miles = self.distance * kmConversionFactor
-
-
-    when "meters"
-      distance_in_miles = self.distance * mConversionFactor
-    end
 
     @total = Total.find_by(user: self.user, start_date: start_date, range: 'week')
 

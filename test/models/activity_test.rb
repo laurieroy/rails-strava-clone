@@ -4,8 +4,6 @@ class ActivityTest < ActiveSupport::TestCase
   def setup
     @user = users(:confirmed_user)
     @activity = @user.activities.build(date: Time.zone.now, duration: 1)
-    @kmConversionFactor = 0.6213711985
-    @mConversionFactor = 0.0006213711985
   end
 
   test "should be valid" do
@@ -64,8 +62,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.duration = 1800
     @activity.save
 
-    distance_in_miles = @activity.distance * @kmConversionFactor
-    pace = @activity.duration / distance_in_miles
+    pace = @activity.duration / @activity.distance_in_miles
 
     assert_in_delta pace, @activity.reload.calculated_pace, 0.001
   end
@@ -76,8 +73,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.duration = 180
     @activity.save
 
-    distance_in_miles = @activity.distance * @mConversionFactor
-    pace = @activity.duration / distance_in_miles
+    pace = @activity.duration / @activity.distance_in_miles
 
     assert_in_delta pace, @activity.reload.calculated_pace, 0.001
   end
@@ -131,8 +127,8 @@ class ActivityTest < ActiveSupport::TestCase
 
     @total = @user.totals.last
 
-    assert_equal 25200, @total.duration
-    assert_equal 70, @total.distance
+    assert_equal 25200, @total.reload.duration
+    assert_equal 70, @total.reload.distance
   end
 
   test "updates total record when activity is deleted" do
@@ -145,5 +141,16 @@ class ActivityTest < ActiveSupport::TestCase
 
     assert_equal 3600, @total.reload.duration
     assert_equal 10, @total.reload.distance
+  end
+
+  test "updates total record when activity is updated" do
+    @user = users(:confirmed_user_with_time_zone)
+    @activity = @user.activities.create(date: Time.zone.now, hours:1, minutes:0, seconds:0, unit: "miles", distance: 10)
+    @total = @user.totals.last
+
+    @activity.update(distance: 20, hours: 2, minutes: 0, seconds: 0)
+
+    assert_equal 7200, @total.reload.duration
+    assert_equal 20, @total.reload.distance
   end
 end
