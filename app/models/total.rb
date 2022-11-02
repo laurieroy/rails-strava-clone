@@ -4,5 +4,5 @@ class Total < ApplicationRecord
   enum range: %i[week]
 
   validates :range, :start_date, presence: true
-
+  validates :user, uniqueness: { scope: %i[start_date range]}
 end

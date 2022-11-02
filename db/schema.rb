@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_02_035743) do
+ActiveRecord::Schema.define(version: 2022_11_02_195856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2022_11_02_035743) do
     t.decimal "distance", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["range"], name: "index_totals_on_range"
+    t.index ["start_date"], name: "index_totals_on_start_date"
     t.index ["user_id"], name: "index_totals_on_user_id"
   end
 
