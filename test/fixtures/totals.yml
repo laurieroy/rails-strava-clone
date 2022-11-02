@@ -1,15 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: confirmed_user_with_totals
   start_date: 2022-11-01
   duration: 1
   distance: 9.99
   range: week
 
-two:
-  user: two
-  start_date: 2022-11-01
-  duration: 1
-  distance: 9.99
+# again, I recongize this isn't recommended, following the tutorial for now
+<% 1.upto(10) do |i| %>
+confirmed_user_with_totals_total_<%= i %>:
+  user: confirmed_user_with_totals
+  start_date: <%= i.months.ago %>
+  duration: <%= rand(1..100) %>
+  distance: <%= rand(1..100) %>
   range: week
+<% end %>
