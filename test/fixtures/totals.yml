@@ -11,7 +11,7 @@ one:
 <% 1.upto(10) do |i| %>
 confirmed_user_with_totals_total_<%= i %>:
   user: confirmed_user_with_totals
-  start_date: <%= i.months.ago %>
+  start_date: <%= i.weeks.ago.beginning_of_week %>
   duration: <%= rand(1..100) %>
   distance: <%= rand(1..100) %>
   range: week
