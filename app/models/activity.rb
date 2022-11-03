@@ -12,7 +12,7 @@ class Activity < ApplicationRecord
   before_save :calculate_distance_in_miles
   before_save :calculate_pace
   after_save :create_or_update_total
-  after_destroy :subtract_from_total
+  after_destroy :create_or_update_total
 
   validates :date, presence: true
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
@@ -61,16 +61,13 @@ class Activity < ApplicationRecord
 	end
 
   def create_or_update_total
-    week = self.date.to_date.cweek
-    year = self.date.to_date.cwyear
-    start_date = Date.commercial(year, week)
-
-    original_duration = self.duration
+    start_date = self.date.beginning_of_week
 
     @total = Total.find_or_initialize_by(user: self.user, start_date: start_date, range: 'week')
     @activities = Activity.where("date >= ?", start_date)
       .where("date <= ?", start_date.end_of_week)
       .where(user: self.user)
+      
     total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
     total_duration = @activities.sum(:duration) unless @activities.empty?
 
@@ -86,21 +83,4 @@ class Activity < ApplicationRecord
   def require_unit_if_set_distance
     errors.add(:base, "Please select a unit for distance") if self.distance.present? && self.unit.nil? 
   end 
-
-  def subtract_from_total
-    week = self.date.to_date.cweek
-    year = self.date.to_date.cwyear
-    start_date = Date.commercial(year, week)
-  
-    original_duration = self.duration
-
-
-    @total = Total.find_by(user: self.user, start_date: start_date, range: 'week')
-
-    unless @total.nil?
-      @total.distance -=  distance_in_miles
-      @total.duration -=  original_duration
-      @total.save
-    end
-  end
 end
