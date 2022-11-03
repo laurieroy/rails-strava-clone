@@ -1,7 +1,7 @@
 <tr>
 	<th scope="col"><%= total.start_date.strftime("%D") %> through <%= total.start_date.end_of_week.strftime("%D") %></th>
 	<th scope="col"><%= total.distance %></th>
-	<th scope="col"><%= total.duration %></th>
+	<th scope="col"><%= format_time_hm(total.duration) %></th>
 </tr>
 
 
