@@ -5,6 +5,7 @@
 # <% end %>
 confirmed_user_activity_1:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>
   seconds: <%= rand(0..59) %>
@@ -15,6 +16,7 @@ confirmed_user_activity_1:
 
 confirmed_user_activity_2:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>
   seconds: <%= rand(0..59) %>
@@ -25,6 +27,7 @@ confirmed_user_activity_2:
 
 confirmed_user_activity_3:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   unit: miles
   user: confirmed_user_with_activities
   calculated_pace:  <%= rand(360..600) %>
@@ -34,6 +37,7 @@ confirmed_user_activity_3:
 
 confirmed_user_activity_4:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   unit: miles
   user: confirmed_user_with_activities
   calculated_pace:  <%= rand(360..600) %>
@@ -42,6 +46,7 @@ confirmed_user_activity_4:
 
 another_confirmed_user_activity_1:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>
   seconds: <%= rand(0..59) %>
@@ -53,6 +58,7 @@ another_confirmed_user_activity_1:
 confirmed_user_with_searchable_activity_1:
   date: <%= Time.zone.now %>
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   unit: miles
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>
@@ -63,6 +69,7 @@ confirmed_user_with_searchable_activity_1:
 
 confirmed_user_with_searchable_activity_2:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   unit: miles
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>
@@ -74,6 +81,7 @@ confirmed_user_with_searchable_activity_2:
 
 confirmed_user_with_searchable_activity_3:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   unit: miles
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>
@@ -85,6 +93,7 @@ confirmed_user_with_searchable_activity_3:
 
 confirmed_user_with_searchable_activity_4:
   distance: <%= rand(1..26) %>
+  distance_in_miles: <%= rand(1..26) %>
   unit: miles
   hours: <%= rand(0..2) %>
   minutes: <%= rand(0..59) %>

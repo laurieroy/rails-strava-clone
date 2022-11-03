@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_24_001151) do
+ActiveRecord::Schema.define(version: 2022_11_02_221529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,21 @@ ActiveRecord::Schema.define(version: 2022_10_24_001151) do
     t.integer "hours"
     t.integer "minutes"
     t.integer "seconds"
+    t.decimal "distance_in_miles", precision: 6, scale: 2
     t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "totals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "start_date", null: false
+    t.integer "duration", default: 0
+    t.integer "range", null: false
+    t.decimal "distance", default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["range"], name: "index_totals_on_range"
+    t.index ["start_date"], name: "index_totals_on_start_date"
+    t.index ["user_id"], name: "index_totals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +105,5 @@ ActiveRecord::Schema.define(version: 2022_10_24_001151) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
+  add_foreign_key "totals", "users"
 end
