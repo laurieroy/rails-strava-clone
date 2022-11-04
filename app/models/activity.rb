@@ -2,7 +2,7 @@ class Activity < ApplicationRecord
   belongs_to :user
   has_one :description, class_name: 'ActionText::RichText', as: :record
   has_rich_text :description
-  has_one :shoe
+  belongs_to :shoe, optional: true
   
   enum category: %i[run paddle hike workout race ride swim other]
   enum difficulty: %i[easy moderate hard]
@@ -12,6 +12,7 @@ class Activity < ApplicationRecord
   before_save :calculate_distance_in_miles
   before_save :calculate_pace
   after_save :create_or_update_total
+  after_save :update_shoe_distance_in_miles
   after_destroy :create_or_update_total
 
   validates :date, presence: true
@@ -83,4 +84,13 @@ class Activity < ApplicationRecord
   def require_unit_if_set_distance
     errors.add(:base, "Please select a unit for distance") if self.distance.present? && self.unit.nil? 
   end 
+
+  def update_shoe_distance_in_miles
+    unless self.shoe.nil?
+      @activities = Activity.where(shoe: self.shoe) 
+      total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
+
+      self.shoe.update(distance_in_miles: total_distance)
+    end
+  end
 end
