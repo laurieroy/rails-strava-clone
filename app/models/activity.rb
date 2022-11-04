@@ -1,8 +1,8 @@
 class Activity < ApplicationRecord
   belongs_to :user
-
   has_one :description, class_name: 'ActionText::RichText', as: :record
   has_rich_text :description
+  has_one :shoe
   
   enum category: %i[run paddle hike workout race ride swim other]
   enum difficulty: %i[easy moderate hard]
