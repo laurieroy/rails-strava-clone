@@ -17,6 +17,7 @@ class ActivitiesController < ApplicationController
 
 	def create
 		@activity = current_user.activities.create(activity_params)
+
 		if @activity.save
 			redirect_to @activity, notice: "Created activity"
 		else
@@ -46,7 +47,7 @@ class ActivitiesController < ApplicationController
 	private 
 
 	def activity_params
-		params.require(:activity).permit(:distance, :category, :difficulty, :unit, :date, :description, :hours, :minutes, :seconds)
+		params.require(:activity).permit(:distance, :category, :difficulty, :unit, :date, :description, :hours, :minutes, :seconds, :shoe_id)
 	end
 	
 	def set_activity 

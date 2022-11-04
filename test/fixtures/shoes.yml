@@ -1,21 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 confirmed_user_with_shoes_shoe_0:
-  name: shoe_0
+  name: "shoe_0"
   distance_in_miles: 0
   retired: false
   replacement_miles: 500
   user: confirmed_user_with_shoes
 
-confirmed_user_with_shoes_shoe_1:
-  name: shoe_1
-  distance_in_miles: <% rand(0..500) %>
+confirmed_user_with_shoes_shoe_10:
+  name: "shoe_1"
+  distance_in_miles: 0
   retired: false
-  replacement_miles: 500
+  replacement_miles: 10
   user: confirmed_user_with_shoes
 
-confirmed_user_with_shoes_shoe_2:
-  name: shoe_2
-  distance_in_miles: <% rand(0..500) %>
-  retired: false
-  replacement_miles: 500
-  user: confirmed_user_with_shoes
+# confirmed_user_with_shoes_shoe_2:
+#   name: shoe_2
+#   distance_in_miles: <% rand(0..500) %>
+#   retired: false
+#   replacement_miles: 500
+#   user: confirmed_user_with_shoes
