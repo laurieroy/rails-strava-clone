@@ -159,4 +159,13 @@ class ActivityTest < ActiveSupport::TestCase
 
     assert_equal 10, @shoe.reload.distance_in_miles
   end
+# Note: I'm differing from the tutorial here in that if a shoe has activity, I'm not removing the miles when the activity is deleted. If needed can add in a special method
+  test "does not update associated shoes distance_in_miles value when activity is destoyed" do
+    @user = users(:confirmed_user_with_shoes)
+    @shoe = @user.shoes.first
+    @activity = @user.activities.create!(distance: 10, unit: "miles", shoe:@shoe, date: Time.zone.now)
+    @activity.destroy
+
+    assert_equal 10, @shoe.reload.distance_in_miles
+  end
 end
