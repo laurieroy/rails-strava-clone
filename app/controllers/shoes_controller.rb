@@ -3,10 +3,7 @@ class ShoesController < ApplicationController
 	before_action :set_shoe, except: %i[index new create]
 
 	def index
-		# @shoes = Shoe.all
-	end
-
-	def show
+		@shoes = current_user.shoes
 	end
 
 	def new
@@ -19,7 +16,18 @@ class ShoesController < ApplicationController
 		if @shoe.save
 			redirect_to :shoes, notice: "Shoe created"
 		else
-			render :new
+			render :new, notice: "Something went wrong, try again"
+		end
+	end
+
+	def edit
+	end
+
+	def update
+		if @shoe.update(shoe_params)
+			redirect_to :shoes, notice: "Shoe updated"
+		else
+			render :edit, notice: "Something went wrong, try again"
 		end
 	end
 
@@ -35,6 +43,6 @@ class ShoesController < ApplicationController
 	end
 
 	def shoe_params
-		params.require(:shoe).permit(:name, :retired, :replacement_miles)
+		params.require(:shoe).permit(:name, :retired, :replacement_miles, :user_id)
 	end
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
 
   resources :activities
-  resources :shoes
+  resources :shoes, except: [:show]
   resources :totals, only: [:index]
 
   unauthenticated do
