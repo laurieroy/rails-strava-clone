@@ -5,7 +5,7 @@ class ShoesController < ApplicationController
 	def index
 		# @q = current_user.shoes.ransack(params[:q])
 		# @pagy, @shoes = pagy(@q.result(distinct: true))
-		@pagy, @shoes = pagy(current_user.shoes.active)
+		@pagy, @shoes = pagy(current_user.shoes.ordered.alphabetized)
 	end
 
 	def new

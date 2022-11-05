@@ -23,7 +23,7 @@
 <% 3.upto(100) do |i| %>
 confirmed_user_with_shoes_shoe_<%= i %>:
   name: shoe_<%= i %>
-  distance_in_miles: <% rand(0..999) %>
+  distance_in_miles: <%= rand(1..999) %>
   <% if i % 3 == 0 %>
   retired: true
   <% else %>
@@ -32,3 +32,23 @@ confirmed_user_with_shoes_shoe_<%= i %>:
   replacement_miles: 500
   user: confirmed_user_with_shoes
 <% end %>
+
+  name: shoe_0
+  distance_in_miles: 0
+  retired: false
+  replacement_miles: 500
+  user: confirmed_user_with_shoes
+
+confirmed_user_with_shoes_shoe_1:
+  name: shoe_1
+  distance_in_miles: <%= rand(0..500) %>
+  retired: false
+  replacement_miles: 500
+  user: confirmed_user_with_shoes
+
+confirmed_user_with_shoes_shoe_2:
+  name: shoe_2
+  distance_in_miles: <%= rand(0..500) %>
+  retired: false
+  replacement_miles: 500
+  user: confirmed_user_with_shoes

@@ -29,6 +29,15 @@
 			<%= f.collection_select :unit, Activity.units.keys.map{ |acty| [acty, acty.humanize] }, :first, :second, {prompt: true }, class: "custom-select" %>
 		</div>
 
+		<div class="form-group col-md-2">
+			<%= f.label :shoe_id, "Shoe" %>
+			<% unless f.object.persisted? %>
+				<%= f.collection_select :shoe_id, current_user.shoes.active.alphabetized, :id, :name_with_miles, {prompt: true }, class: "custom-select" %>
+			<% else %>
+				<%= f.collection_select :shoe_id, current_user.shoes.alphabetized, :id, :name_with_miles, {prompt: true }, class: "custom-select" %>
+			<% end %>
+		
+		</div>
 
 		<div class="form-group col-md-2">
 			<%= f.label :hours %>

@@ -177,4 +177,6 @@ class ActivityTest < ActiveSupport::TestCase
 
     assert_nil @activity.reload.shoe
   end
+
+  
 end
