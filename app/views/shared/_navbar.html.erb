@@ -24,6 +24,15 @@
           <%= link_to "View weekly totals", totals_path, class: "dropdown-item" %>
         </div>
       </li> 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          My Shoes
+        </a>
+        <div class="dropdown-menu">
+          <%= link_to "View my shoes", shoes_path, class: "dropdown-item" %>
+          <%= link_to "Add a shoe", new_shoe_path, class: "dropdown-item" %>
+        </div>
+      </li> 
     </ul>
     <% end %>
     <ul class="navbar-nav">

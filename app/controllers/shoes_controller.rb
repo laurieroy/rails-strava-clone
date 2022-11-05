@@ -3,7 +3,9 @@ class ShoesController < ApplicationController
 	before_action :set_shoe, except: %i[index new create]
 
 	def index
-		@shoes = current_user.shoes
+		# @q = current_user.shoes.ransack(params[:q])
+		# @pagy, @shoes = pagy(@q.result(distinct: true))
+		@pagy, @shoes = pagy(current_user.shoes.active)
 	end
 
 	def new
