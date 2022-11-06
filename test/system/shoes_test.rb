@@ -18,6 +18,16 @@ class ShoesTest < ApplicationSystemTestCase
     # assert_selector "h1", text: "Shoes"
     assert_text "Shoe created"
   end
+  
+  test "creating a new shoe without a mileage limit" do
+    visit new_shoe_path
+  
+    fill_in "Name",	with: "Shoe" 
+    click_button "Create Shoe"
+
+    # assert_selector "h1", text: "Shoes"
+    assert_text "Shoe created"
+  end
 
   test "rendering form errors" do
     visit new_shoe_path
