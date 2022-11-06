@@ -71,7 +71,7 @@ class Activity < ApplicationRecord
       .where(user: self.user)
       
     total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
-    byebug
+    
     total_duration = @activities.sum(:duration) unless @activities.empty?
 
     @total.distance = total_distance unless total_distance.nil?

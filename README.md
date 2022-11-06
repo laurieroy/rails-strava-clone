@@ -24,5 +24,4 @@ To run (dev mode): foreman start -f Procfile.dev
 ### TODO:
 - Fix totals to remove distance activity.rb when activity is deleted. Case activities.nil
 
-
-
+- Review pundit scope, add tests

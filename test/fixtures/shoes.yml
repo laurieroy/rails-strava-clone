@@ -52,4 +52,4 @@ confirmed_user_with_shoes_shoe_2:
   distance_in_miles: <%= rand(0..500) %>
   retired: false
   replacement_miles: 500
-  user: confirmed_user_with_shoes
+  user: confirmed_user_with_shoe

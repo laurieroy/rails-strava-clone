@@ -23,9 +23,11 @@ class ShoesController < ApplicationController
 	end
 
 	def edit
+		authorize @shoe
 	end
 
 	def update
+		authorize @shoe
 		if @shoe.update(shoe_params)
 			redirect_to :shoes, notice: "Shoe updated"
 		else
@@ -34,6 +36,7 @@ class ShoesController < ApplicationController
 	end
 
 	def destroy
+		authorize @shoe
 		@shoe.destroy
 		redirect_to :shoes, notice: "Shoe deleted"
 	end
