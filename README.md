@@ -7,9 +7,11 @@ I had started this using rspec but was finding it difficult to shift from outsid
 The tech stack is Ruby 2.7.2 on Rails 6.1 with a postgres db, CI with GH actions. Testing is with mini-test, with which I am not as familar, so this will be a nice review.
 
    
-Application time zone is set to the current_user's time zone, default value is UTC.
+- Application time zone is set to the current_user's time zone, default value is UTC.
 
-For the weekly totals, the default start date is the Monday of the current week.
+- For the weekly totals, the default start date is the Monday of the current week.
+
+- Default value for runs etc is miles
 
 Auth: Devise
 
@@ -17,7 +19,10 @@ UI: bootstrap 4 with devise-bootstrapped
 
 Dev dependencies: bullet, strong_migrations, mailcatcher
 
-<!-- To run: foreman start -->
+To run (dev mode): foreman start -f Procfile.dev
+
+### TODO:
+- Fix totals to remove distance activity.rb when activity is deleted. Case activities.nil
 
 
 
