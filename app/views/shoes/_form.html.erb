@@ -1,4 +1,4 @@
-<%= form_with model: @shoe, local: true, class: "p-3 shadow-sm rounded-sm border mb-5" do |f| %>
+<%= form_with model: @shoe, remote: true, class: "p-3 shadow-sm rounded-sm border mb-5" do |f| %>
 
 	<%= render partial: "shared/form_errors", locals: {f: f}  %>
 

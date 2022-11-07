@@ -21,7 +21,10 @@ Dev dependencies: bullet, strong_migrations, mailcatcher
 
 To run (dev mode): foreman start -f Procfile.dev
 
+### Stuff I learned:
+- For the AJAX to be processed, it needs to be` local: false` and not `remote: true`
+
 ### TODO:
 - Fix totals to remove distance activity.rb when activity is deleted. Case activities.nil
 
-- Review pundit scope, add tests
+- Review pundit scope (removed from Shoe for it to work), add tests

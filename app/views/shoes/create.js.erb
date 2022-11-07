@@ -1,0 +1,9 @@
+var shoeSelectList = document.querySelector("#activity_shoe_id");
+
+if(shoeSelectList) {
+	var options = shoeSelectList.querySelectorAll("option");
+     options.forEach((option) => {
+         option.removeAttribute("selected")
+     });
+     shoeSelectList.querySelector("option").insertAdjacentHTML("afterend", "<option value='<%= @shoe.id %>' selected><%= @shoe.name_with_miles %></option>");
+

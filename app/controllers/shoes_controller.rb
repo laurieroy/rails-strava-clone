@@ -14,11 +14,13 @@ class ShoesController < ApplicationController
 
 	def create
 		@shoe = current_user.shoes.create(shoe_params)
-
-		if @shoe.save
-			redirect_to :shoes, notice: "Shoe created"
-		else
-			render :new, notice: "Something went wrong, try again"
+		respond_to do |format|
+			if @shoe.save
+				format.html { redirect_to :shoes, notice: "Shoe created" }
+				format.js 
+			else
+				format.html { render :new, notice: "Something went wrong, try again" }
+			end
 		end
 	end
 
