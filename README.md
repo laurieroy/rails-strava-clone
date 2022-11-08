@@ -24,6 +24,8 @@ To run (dev mode): foreman start -f Procfile.dev
 ### Stuff I learned:
 - For the AJAX to be processed, it needs to be` local: false` and not `remote: true`
 
+- id: dom_id(@shoe) helper creates unique id
+
 ### TODO:
 - Fix totals to remove distance activity.rb when activity is deleted. Case activities.nil
 

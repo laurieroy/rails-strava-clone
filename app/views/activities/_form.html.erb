@@ -78,7 +78,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= form_with model: @shoe, local: false do |f| %>
+        <%= form_with model: @shoe, id: dom_id(@shoe), local: false do |f| %>
 					<%= render partial: "shared/form_errors", locals: {f: f}  %>
 							<div class="form-group">
 								<%= f.label :name %>

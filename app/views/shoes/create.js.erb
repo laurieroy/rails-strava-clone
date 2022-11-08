@@ -1,4 +1,5 @@
 var shoeSelectList = document.querySelector("#activity_shoe_id");
+var shoeForm = document.querySelector("#new_shoe");
 
 if(shoeSelectList) {
 	var options = shoeSelectList.querySelectorAll("option");
@@ -7,3 +8,5 @@ if(shoeSelectList) {
      });
      shoeSelectList.querySelector("option").insertAdjacentHTML("afterend", "<option value='<%= @shoe.id %>' selected><%= @shoe.name_with_miles %></option>");
 
+	shoeForm && shoeForm.reset();
+}
