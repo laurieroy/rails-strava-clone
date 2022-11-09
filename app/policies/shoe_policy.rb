@@ -1,5 +1,4 @@
 class ShoePolicy < ApplicationPolicy
- 
   def edit?
     user == record.user
   end
@@ -11,5 +10,4 @@ class ShoePolicy < ApplicationPolicy
   def destroy?
     user == record.user
   end
-
 end

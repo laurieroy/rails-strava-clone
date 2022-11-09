@@ -47,9 +47,16 @@ confirmed_user_with_shoes_shoe_1:
   replacement_miles: 500
   user: confirmed_user_with_shoes
 
-confirmed_user_with_shoes_shoe_2:
-  name: shoe_2
+confirmed_user_with_shoes_shoe_to_edit:
+  name: shoe_to_edit
   distance_in_miles: <%= rand(0..500) %>
   retired: false
   replacement_miles: 500
-  user: confirmed_user_with_shoe
+  user: confirmed_user_with_shoes
+
+confirmed_user_with_shoes_shoe_to_delete:
+  name: shoe_to_delete
+  distance_in_miles: <%= rand(0..500) %>
+  retired: false
+  replacement_miles: 500
+  user: confirmed_user_with_shoes

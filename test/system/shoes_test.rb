@@ -3,7 +3,8 @@ require "application_system_test_case"
 class ShoesTest < ApplicationSystemTestCase
   def setup
     @user = users(:confirmed_user_with_shoes)
-    @shoe = shoes(:confirmed_user_with_shoes_shoe_2)
+    @shoe_to_del = shoes(:confirmed_user_with_shoes_shoe_to_delete)
+    @shoe_to_edit = shoes(:confirmed_user_with_shoes_shoe_to_edit)
 
     sign_in @user
   end
@@ -38,7 +39,7 @@ class ShoesTest < ApplicationSystemTestCase
   end
 
   test "updating a shoe" do
-    visit edit_shoe_path(@shoe)
+    visit edit_shoe_path(@shoe_to_edit)
 
     fill_in "Name",	with: "Edited Shoe"
     # check "Retired"
@@ -49,7 +50,7 @@ class ShoesTest < ApplicationSystemTestCase
   end
 
   test "deleting a shoe from edit page" do
-    visit edit_shoe_path(@shoe)
+    visit edit_shoe_path(@shoe_to_del)
 
     assert_difference("Shoe.count", -1) do
 			accept_alert do
