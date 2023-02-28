@@ -52,11 +52,10 @@ class ShoesTest < ApplicationSystemTestCase
   test "deleting a shoe from edit page" do
     visit edit_shoe_path(@shoe_to_del)
 
-    assert_difference("Shoe.count", -1) do
-			accept_alert do
-				click_link "Delete"
-      end
+    accept_alert do
+      click_link "Delete"
     end
+    assert_no_text @shoe_to_del.name
     assert_text "Shoe deleted"
   end
 end

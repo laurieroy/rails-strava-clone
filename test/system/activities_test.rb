@@ -140,7 +140,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
 		visit new_activity_path
 
-		click_button "Add shoe"
+		click_button "Add new shoe"
 		within "#new_shoe" do
 			fill_in "Name",	with: "Foo Bar"
 			click_button "Create Shoe"
@@ -156,15 +156,10 @@ class ActivitiesTest < ApplicationSystemTestCase
 
 		visit new_activity_path
 
-		click_button "Add shoe"
+		click_button "Add new shoe"
 		within "#new_shoe" do
-			fill_in "Name",	with: "Foo Bar"
 			click_button "Create Shoe"
-			assert_text "error"
-		end
-
-		within "#activity_shoe_id" do
-			assert_text "Foo Bar (0.0 miles)"
+			assert_selector "#form-errors"
 		end
 	end
 end

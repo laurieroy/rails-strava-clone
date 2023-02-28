@@ -22,21 +22,21 @@ document.addEventListener('turbolinks:load', function () {
   });
 });
 
-require("trix")
-require("@rails/actiontext")
+require('trix')
+require('@rails/actiontext')
 
 
-document.addEventListener("trix-file-accept", (e)=>{
+document.addEventListener('trix-file-accept', (e)=>{
   e.preventDefault();
 });
 
-document.addEventListener("ajax:success", (e)=>{
+document.addEventListener('ajax:success', (e)=>{
   var detail = e.detail;
   var data = detail[0], status = detail[1], xhr = detail[2];
   console.log(data)
-  let shoeFormModal = document.querySelector("#shoeFormModal");
+  let shoeFormModal = document.querySelector('#shoeFormModal');
 
-  if(shoeFormModal && status === "OK") {
+  if(shoeFormModal && status === 'OK') {
       $('#shoeFormModal').modal('hide');
   }
 });

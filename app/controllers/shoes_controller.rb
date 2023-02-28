@@ -20,6 +20,7 @@ class ShoesController < ApplicationController
 				format.js 
 			else
 				format.html { render :new, notice: "Something went wrong, try again" }
+				format.js { render :error, status: :unprocessable_entity }
 			end
 		end
 	end

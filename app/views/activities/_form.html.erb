@@ -1,6 +1,6 @@
 <%= form_with model: @activity, local: true do |f| %>
 
-<%= render partial: "shared/form_errors", locals: {f: f}  %>
+<%= render partial: "shared/form_errors", locals: {object: f.object} %>
 
 	<div class="form-row">
 		<div class="col-auto form-group">
@@ -30,12 +30,18 @@
 		</div>
 
 		<div class="form-group col-md-2">
-			<div id="shoe-select-wrapper">
-				<%= render partial: "activities/shoes_select", locals: {f: f}  %>
-				<button type="button" class="btn btn-link" data-toggle="modal" data-target="#shoeFormModal">
-					Add new shoe
-				</button>
-			</div>
+			<%= f.label :shoe_id, "Shoe" %>
+			<% unless f.object.persisted? %>
+				<%= f.collection_select :shoe_id, current_user.shoes.active.alphabetized, :id, :name_with_miles, {prompt: true }, class: "custom-select" %>
+			<% else %>
+				<%= f.collection_select :shoe_id, current_user.shoes.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
+			<% end %>
+			<%# <div id="shoes-select-wrapper"> %>
+				<%#= render partial: "activities/shoes_select", locals: {object: f.object} 	</div>%>
+			<button type="button" class="btn btn-link" data-toggle="modal" data-target="#shoeFormModal">
+				Add new shoe
+			</button>
+		
 		</div>
 
 		<div class="form-group col-md-2">
@@ -79,22 +85,8 @@
       </div>
       <div class="modal-body">
         <%= form_with model: @shoe, id: dom_id(@shoe), local: false do |f| %>
-					<%= render partial: "shared/form_errors", locals: {f: f}  %>
-							<div class="form-group">
-								<%= f.label :name %>
-								<%= f.text_field :name, class: "form-control" %>
-							</div>
-
-							<div class="form-group col-md-4">
-								<%= f.label :replacement_miles, "Notify me when my shoes hit this mileage (Recommended between 300-500 miles)" %>
-								<%= f.number_field :replacement_miles, min:0, step: 1, class: "form-control" %>
-							</div>
-
-							<div class="form-check form-group col-md-2">
-								<label class="form-check-label">
-								<%= f.check_box :retired, class: "form-control form-check-input" %>
-									Retired
-							</div>
+					<%= render partial: "shared/form_errors", locals: {object: f.object}  %>
+						<%= render partial: "shoes/form_fields", locals: {f: f} %>
 						<div class="form-group">
 							<%= f.submit class: "btn btn-primary float-right" %>
 						</div>

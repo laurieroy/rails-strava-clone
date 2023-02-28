@@ -1,23 +1,8 @@
 <%= form_with model: @shoe, remote: true, class: "p-3 shadow-sm rounded-sm border mb-5" do |f| %>
 
-	<%= render partial: "shared/form_errors", locals: {f: f}  %>
-
-	<div class="form-group">
-		<%= f.label :name %>
-		<%= f.text_field :name, placeholder: "Adidas Adizero Boston 10", class: "form-control" %>
-	</div>
-
-	<div class="form-group col-md-4">
-		<%= f.label :replacement_miles, "Notify me when my shoes hit this mileage (Recommended between 300-500 miles)" %>
-		<%= f.number_field :replacement_miles, min:0, step: 1, value: 500, class: "form-control" %>
-	</div>
-
-	<div class="form-check">
-		<label class="form-check-label">
-			<%= f.check_box :retired , class: "form-check-input" %>
-			Retired
-		</label>
-	</div>
+	<%= render partial: "shared/form_errors", locals: {object: f.object} %>
+		
+		<%= render partial: "shoes/form_fields", locals: {f: f} %>
 
 	<%# <div class="col-auto form-group"> %>
 		<%#= f.label :date %>
@@ -28,6 +13,7 @@
 		<%= link_to "Delete", shoe_path(@shoe), method: :delete, data: {confirm: "Really delete this shoe?" }, class: "btn btn-danger" if @shoe.persisted? %>
 		<%= f.submit class: "btn btn-primary float-right" %>
 	</div>
+
 	<%= link_to "Back", :back %>
 
 <% end %>
