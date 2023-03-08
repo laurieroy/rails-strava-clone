@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :set_activity, except: %i[index new create]
+	before_action :set_shoe
 
 	def index
 		@q = current_user.activities.ransack(params[:q])
@@ -46,10 +47,14 @@ class ActivitiesController < ApplicationController
 	private 
 
 	def activity_params
-		params.require(:activity).permit(:distance, :category, :difficulty, :unit, :date, :description, :hours, :minutes, :seconds)
+		params.require(:activity).permit(:category, :date, :description, :difficulty, :distance, :hours, :minutes, :seconds, :shoe_id, :unit  )
 	end
 	
 	def set_activity 
 		@activity = Activity.find(params[:id])
+	end
+
+	def set_shoe
+		@shoe = current_user.shoes.build
 	end
 end

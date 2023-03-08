@@ -14,7 +14,8 @@ class Activity < ApplicationRecord
   after_save :create_or_update_total
   after_save :update_shoe_distance_in_miles
   after_destroy :create_or_update_total
-
+  after_destroy :update_shoe_distance_in_miles
+  
   validates :date, presence: true
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
   validates :distance, numericality: { greater_than_or_equal_to: 0, allow_nil: true }
@@ -70,9 +71,11 @@ class Activity < ApplicationRecord
       .where(user: self.user)
       
     total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
+    
     total_duration = @activities.sum(:duration) unless @activities.empty?
 
     @total.distance = total_distance unless total_distance.nil?
+    
     @total.duration = total_duration unless total_duration.nil?
     @total.save
   end
@@ -88,7 +91,7 @@ class Activity < ApplicationRecord
   def update_shoe_distance_in_miles
     unless self.shoe.nil?
       @activities = Activity.where(shoe: self.shoe) 
-      total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
+      total_distance = @activities.sum(:distance_in_miles) 
 
       self.shoe.update(distance_in_miles: total_distance)
     end

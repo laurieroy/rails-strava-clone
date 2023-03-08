@@ -7,7 +7,6 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
 
     @user_one_activity =  @user_one.activities.first
     @user_two_activity =  @user_two.activities.first
-    # binding.pry
   end
   
   test "cannot delete another user's activity" do

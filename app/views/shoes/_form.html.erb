@@ -1,0 +1,19 @@
+<%= form_with model: @shoe, remote: true, class: "p-3 shadow-sm rounded-sm border mb-5" do |f| %>
+
+	<%= render partial: "shared/form_errors", locals: {object: f.object} %>
+		
+		<%= render partial: "shoes/form_fields", locals: {f: f} %>
+
+	<%# <div class="col-auto form-group"> %>
+		<%#= f.label :date %>
+		<%#= f.datetime_field :date, class: "form-control" %>
+	<%# </div> %>
+
+	<div class="form-group">
+		<%= link_to "Delete", shoe_path(@shoe), method: :delete, data: {confirm: "Really delete this shoe?" }, class: "btn btn-danger" if @shoe.persisted? %>
+		<%= f.submit class: "btn btn-primary float-right" %>
+	</div>
+
+	<%= link_to "Back", :back %>
+
+<% end %>

@@ -3,6 +3,8 @@ require "application_system_test_case"
 class ActivitiesTest < ApplicationSystemTestCase
 	def setup
 		@user = users(:confirmed_user_with_activities)
+		@user_with_shoe = users(:confirmed_user_with_shoes)
+		@shoe = shoes(:confirmed_user_with_shoes_shoe_1)
 		@activity = @user.activities.last
 	end
 
@@ -119,4 +121,45 @@ class ActivitiesTest < ApplicationSystemTestCase
 		end
 	end
 
+	test "sets shoes when creating an activity" do
+		sign_in @user_with_shoe
+
+		visit new_activity_path
+
+		fill_in "Distance",	with: "10.0" 
+		select "Miles"
+		select "#{@shoe.name_with_miles}" 
+
+		click_button "Create Activity"
+
+		assert_text "Created activity"
+	end
+
+	test "should create shoe" do
+		sign_in @user
+
+		visit new_activity_path
+
+		click_button "Add new shoe"
+		within "#new_shoe" do
+			fill_in "Name",	with: "Foo Bar"
+			click_button "Create Shoe"
+		end
+
+		within "#activity_shoe_id" do
+			assert_text "Foo Bar (0.0 miles)"
+		end
+	end
+	
+	test "should render form errors when creating shoe" do
+		sign_in @user
+
+		visit new_activity_path
+
+		click_button "Add new shoe"
+		within "#new_shoe" do
+			click_button "Create Shoe"
+			assert_selector "#form-errors"
+		end
+	end
 end

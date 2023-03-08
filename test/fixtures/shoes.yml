@@ -1,4 +1,38 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# confirmed_user_with_shoes_shoe_0:
+#   name: shoe_0
+#   distance_in_miles: 0
+#   retired: false
+#   replacement_miles: 500
+#   user: confirmed_user_with_shoes
+
+# confirmed_user_with_shoes_shoe_1:
+#   name: shoe_1
+#   distance_in_miles: <% rand(0..500) %>
+#   retired: false
+#   replacement_miles: 500
+#   user: confirmed_user_with_shoes
+
+# confirmed_user_with_shoes_shoe_2:
+#   name: shoe_2
+#   distance_in_miles: <% rand(0..500) %>
+#   retired: false
+#   replacement_miles: 500
+#   user: confirmed_user_with_shoes
+
+<% 3.upto(100) do |i| %>
+confirmed_user_with_shoes_shoe_<%= i %>:
+  name: shoe_<%= i %>
+  distance_in_miles: <%= rand(1..999) %>
+  <% if i % 3 == 0 %>
+  retired: true
+  <% else %>
+  retired: false
+  <% end %>
+  replacement_miles: 500
+  user: confirmed_user_with_shoes
+<% end %>
+
 confirmed_user_with_shoes_shoe_0:
   name: shoe_0
   distance_in_miles: 0
@@ -8,14 +42,21 @@ confirmed_user_with_shoes_shoe_0:
 
 confirmed_user_with_shoes_shoe_1:
   name: shoe_1
-  distance_in_miles: <% rand(0..500) %>
+  distance_in_miles: <%= rand(0..500) %>
   retired: false
   replacement_miles: 500
   user: confirmed_user_with_shoes
 
-confirmed_user_with_shoes_shoe_2:
-  name: shoe_2
-  distance_in_miles: <% rand(0..500) %>
+confirmed_user_with_shoes_shoe_to_edit:
+  name: shoe_to_edit
+  distance_in_miles: <%= rand(0..500) %>
+  retired: false
+  replacement_miles: 500
+  user: confirmed_user_with_shoes
+
+confirmed_user_with_shoes_shoe_to_delete:
+  name: shoe_to_delete
+  distance_in_miles: <%= rand(0..500) %>
   retired: false
   replacement_miles: 500
   user: confirmed_user_with_shoes
