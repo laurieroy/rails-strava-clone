@@ -4,6 +4,8 @@ class Activity < ApplicationRecord
   has_rich_text :description
   belongs_to :shoe, optional: true
   
+  scope :ordered, -> { order(date: :desc) }
+
   enum category: %i[run paddle hike workout race ride swim other]
   enum difficulty: %i[easy moderate hard]
   enum unit: %i[miles kilometers meters]
@@ -74,7 +76,7 @@ class Activity < ApplicationRecord
     
     total_duration = @activities.sum(:duration) unless @activities.empty?
 
-    @total.distance = total_distance unless total_distance.nil?
+    @total.distance_in_miles = total_distance unless total_distance.nil?
     
     @total.duration = total_duration unless total_duration.nil?
     @total.save

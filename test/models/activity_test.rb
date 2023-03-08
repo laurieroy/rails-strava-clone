@@ -126,7 +126,7 @@ class ActivityTest < ActiveSupport::TestCase
     @total = @user.totals.last
 
     assert_equal 25200, @total.reload.duration
-    assert_equal 70, @total.reload.distance
+    assert_equal 70, @total.reload.distance_in_miles
   end
 
   test "updates total record when activity is deleted" do
@@ -138,7 +138,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity_one.destroy
 
     assert_equal 3600, @total.reload.duration
-    assert_equal 10, @total.reload.distance
+    assert_equal 10, @total.reload.distance_in_miles
   end
 
   test "updates total record when activity is updated" do
@@ -149,7 +149,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.update(distance: 20, hours: 2, minutes: 0, seconds: 0)
 
     assert_equal 7200, @total.reload.duration
-    assert_equal 20, @total.reload.distance
+    assert_equal 20, @total.reload.distance_in_miles
   end
 
   test "updates associated shoes distance_in_miles value when activity is created or updated" do

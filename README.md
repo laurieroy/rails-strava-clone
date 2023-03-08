@@ -13,6 +13,8 @@ The tech stack is Ruby 2.7.2 on Rails 6.1 with a postgres db, CI with GH actions
 
 - Default value for runs etc is miles
 
+- Default view for activities and weekly totals is by date descending (most recent at top of list)
+
 Auth: Devise
 
 UI: bootstrap 4 with devise-bootstrapped
