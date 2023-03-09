@@ -1,2 +1,8 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="jumbotron">
+  <h1 class="display-4 text-center">Stridecatcher</h1>
+  <p class="lead">A simple strava clone.</p>
+  <div class="form-group">
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-primary btn-lg" %>
+  </div>
+</div>

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :shoes, except: [:show]
   resources :totals, only: [:index]
 
-  unauthenticated do
-    root "static_pages#home"
-  end
+
+  root "static_pages#home", to: "/home"
+
 
   authenticated :user do
     root "activities#index", as: :authenticated_root
